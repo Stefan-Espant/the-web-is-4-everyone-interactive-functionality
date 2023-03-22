@@ -1,0 +1,35 @@
+{
+  "name": "the-web-is-4-everyone",
+  "version": "1.0.0",
+  "description": "Ontwerp en maak voor een opdrachtgever een interactieve toepassing die voor iedereen toegankelijk is.",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stefan-Espant/the-web-is-4-everyone-interactive-functionality.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "ejs"
+  ],
+  "author": "J.P. Sturkenboom <j.p.sturkenboom@hva.nl>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Stefan-Espant/the-web-is-4-everyone-interactive-functionality/issues"
+  },
+  "homepage": "https://github.com/Stefan-Espant/the-web-is-4-everyone-interactive-functionality#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21"
+  }
+}

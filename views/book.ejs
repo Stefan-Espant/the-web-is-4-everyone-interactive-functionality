@@ -1,0 +1,26 @@
+<%- include('./partials/head') %> <%-
+include('./partials/header') %>
+
+<main>
+	<section class="item-view">
+		<article>
+			<img src="<%= results[0].coverimages[1] %>" alt="" />
+		</article>
+		<article>
+			<h1><%= results[0].titles[0] %></h1>
+			<h2>Over het boek</h2>
+			<ul>
+				<li>Schrijver: <%= results[0].authors[0] %></li>
+				<li>ISBN: <%= results[0].isbn %></li>
+				<li>Uitgever: <%= results[0].publisher %></li>
+				<li>Genre: <%= results[0]['subject-topical'][2] %></li>
+				<li>Taal: <%= results[0].languages %></li>
+			</ul>
+			<h2>Samenvatting</h2>
+			<p><%= results[0].summaries[0] %></p>
+            <button class="reserve-item">Reserveer boek</button>
+		</article>
+	</section>
+</main>
+
+<%- include('./partials/foot') %>
