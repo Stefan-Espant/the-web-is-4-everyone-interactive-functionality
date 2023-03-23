@@ -69,6 +69,14 @@ header section:first-child {
   padding: var(--u-default);
 }
 
+header ul {
+  background: none;
+  display: flex;
+  align-items: center;
+  gap: var(--u-default);
+}
+
+
 header nav {
   display: flex;
   position: sticky;
@@ -124,35 +132,8 @@ p {
   max-width: 30em;
 }
 
-/* form */
-
-form {
-  width: 80%;
-  display: flex;
-  justify-content: left;
-  margin: var(--u-default) auto 0;
-}
-
-label {
-  display: none;
-}
-
-input {
-  width: 100%;
-  max-width: 30em;
-  height: 2em;
-  border: var(--u-micro) solid var(--c-accent-100);
-  border-radius: var(--u-default);
-  margin-right: var(--u-medium);
-  padding-left: var(--u-default);
-}
-
-input:focus-visible {
-  outline: none;
-}
-
 /* List */
-ul {
+article ul {
   background-color: var(--c-accent-25);
   width: fit-content;
   border-radius: var(--u-small);
@@ -210,6 +191,21 @@ button:hover {
 
 button:hover svg {
   fill: var(--c-primary-100);
+}
+
+.cta-button {
+  background-color: var(--c-accent-100);
+  color: var(--c-default);
+  padding: var(--u-medium) var(--u-default);
+}
+
+.cta-button svg , .cta-button:hover  svg  {
+  fill: var(--c-default);
+}
+
+.cta-button:hover {
+  background-color: var(--c-primary-100);
+  color: var(--c-default);
 }
 
 .reserve-item {
@@ -270,12 +266,60 @@ section {
   height: 12em;
   aspect-ratio: 1/1;
   object-fit: scale-down;
+  margin: 0em 0.8em;
 }
 
 .items div {
   bottom: var(--u-medium);
   position: absolute;
   right: var(--u-default);
+}
+
+.items h2 {
+  overflow: hidden;
+  max-height: 2.75em;
+}
+
+/* Zoekbalk */
+
+.searchbar form {
+  width: 80%;
+  display: flex;
+  justify-content: left;
+  margin: var(--u-default) auto 0;
+}
+
+.searchbar label {
+  display: none;
+}
+
+.searchbar input {
+  width: 66%;
+  max-width: 30em;
+  height: 2em;
+  border: var(--u-micro) solid var(--c-accent-100);
+  border-radius: var(--u-default);
+  margin: auto;
+  padding-left: var(--u-default);
+  transition: var(--a-default) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.searchbar input:focus {
+  width: 100%;
+}
+
+.searchbar input:focus-visible {
+  outline: none;
+}
+
+/* Fomrulier voor het reserveren van een studeerplek */
+.study-place {
+  width: 100%;
+  display: block;
+}
+
+.study-place fieldset {
+  display: block;
 }
 
 

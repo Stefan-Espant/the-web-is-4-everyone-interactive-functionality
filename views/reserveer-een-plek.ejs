@@ -1,0 +1,24 @@
+<%- include('./partials/head') %> <%-
+include('./partials/header') %>
+
+<main>
+    <section>
+    <h1>Reserveer een studeerplek</h1>
+    <form class="study-place" action="/reserveer-een-plek" method="post">
+        <fieldset>
+            <label for="id">id</label>
+            <input type="text" name="id" value="<%= reservations.id ?? '' %>">
+            <label for="obaId">oba ID</label>
+            <input type="text" name="obaId" value="">
+            <label for="userName">naam</label>
+            <input type="text" name="userName" value="">
+            <label for="date">datum</label>
+            <input type="date" name="date" value="">
+            <input type="submit">
+        </fieldset>
+    </form>    
+</section>
+
+</main>
+
+<%- include('./partials/foot') %>
