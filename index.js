@@ -71,6 +71,8 @@ server.post("/reserveer-een-plek", (request, response) => {
 
     const url = `${baseurl}/reserveringen`;
 
+    console.log(request.body)
+
     postJson(url, request.body).then((data) => {
         let newReservation = { ...request.body };
 
@@ -85,6 +87,7 @@ server.post("/reserveer-een-plek", (request, response) => {
 
             response.render("reserveer-een-plek", newdata);
         }
+        console.log(data)
     });
 
     console.log(url)
