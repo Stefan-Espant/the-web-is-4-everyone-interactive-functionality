@@ -14,7 +14,7 @@ dotenv.config();
 // Opbouw Boeken URL van de API
 const urlBase = "https://zoeken.oba.nl/api/v1/search/";
 const urlQuery = "?q=";
-const urlDefault = "special:all";
+const urlDefault = "boek";
 const urlKey = `${process.env.KEY}`;
 const urlOutput = "&refine=true&output=json";
 const defaultUrl =
