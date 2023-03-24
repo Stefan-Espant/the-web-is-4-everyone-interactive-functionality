@@ -4,7 +4,7 @@ include('./partials/header') %>
 <main>
 	<section class="searchbar">
 		<h1>Waar bent u naar op zoek?</h1>
-		<form action="" method="GET">
+		<form action="" method="get">
 			<input
 				type="search"
 				id="site-search"
@@ -19,7 +19,7 @@ include('./partials/header') %>
 		<article>
 				<img
 				src=" <%= result.coverimages %> "
-				alt="<%= result.titles %>"
+				alt=" <%= result.titles %> "
 				/>
 			<!-- Laad de titel van het boek in -->
 			<h2><%= result.titles[0] %></h2>

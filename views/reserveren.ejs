@@ -3,16 +3,17 @@ include('./partials/header') %>
 
 <main>
     <section>
-    <h1>Reserveer een studeerplek</h1>
-    <form class="study-place" action="/reserveer-een-plek" method="post">
+        <h1>Reserveer een boek</h1>
+    <form class="reservation" action="/reserveer-een-plek" method="post">
         <fieldset>
+            <legend>Reserveer een boek</legend>
             <label for="obaId">oba ID</label>
             <input id="obaId" type="text" name="obaId" value="<%= locals.reservations?.obaId ?? '' %>"/>
-            <label for="userName">naam</label>
+            <label for="userName">Wat is uw voornaam?</label>
             <input id="userName" type="text" name="userName" value="<%= locals.reservations?.userName ?? '' %>"/>
-            <label for="date">datum</label>
+            <label for="date">Wanneer wilt u een boek lenen?</label>
             <input id="date" type="date" name="date" value="<%= locals.reservations?.date ?? '' %>"/>
-            <input type="submit">
+            <input type="submit" value="reserveren">
         </fieldset>
     </form>    
 </section>

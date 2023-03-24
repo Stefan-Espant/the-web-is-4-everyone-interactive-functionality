@@ -5,7 +5,6 @@ const searchBar = document.querySelector("#site-search");
 searchBar.addEventListener("keyup", search);
 itemResults = document.querySelectorAll(".items > article");
 
-// 
 function search() {
 	const searchValue = this.value.toLowerCase();
 
@@ -13,6 +12,7 @@ function search() {
 		itemResults.forEach((itemResult) => {
 			itemResult.hidden = false;
 		});
+		
 	} else {
 		itemResults.forEach((itemResult) => {
 			itemResult.hidden = !itemResult.textContent

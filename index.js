@@ -11,6 +11,10 @@ server.set("port", process.env.PORT || 8000);
 // Activeert het .env bestand
 dotenv.config();
 
+// Stel afhandeling van formulieren in
+server.use(express.json())
+server.use(express.urlencoded({ extended: true }))
+
 // Opbouw Boeken URL van de API
 const urlBase = "https://zoeken.oba.nl/api/v1/search/";
 const urlQuery = "?q=";
@@ -33,7 +37,6 @@ server.use(express.static("public"));
 server.get("/", (request, response) => {
 	fetchJson(defaultUrl).then((data) => {
 		response.render("index", data);
-		console.log(data);
 	});
 });
 
@@ -49,11 +52,10 @@ server.get("/book", async (request, response) => {
 		.catch((err) => err);
 	response.render("book", data);
 
-	console.log(uniqueUrl);
 });
 
 // Maakt een route voor de reserveringspagina
-server.get("/reserveer-een-plek", (request, response) => {
+server.get("/reserveren", (request, response) => {
     const baseurl = "https://api.oba.fdnd.nl/api/v1";
 
     const url = `${baseurl}/reserveringen`;
@@ -61,17 +63,18 @@ server.get("/reserveer-een-plek", (request, response) => {
 	const reservation = request.query.reservations;
 
 	fetchJson(url).then((data) => {
-		response.render("reserveer-een-plek", data);
+		response.render("reserveren", data);
+	});
+
+    fetchJson(defaultUrl).then((data) => {
+		response.render("reserveren", data);
 	});
 });
 
 // Verstuurt de data naar de API
-server.post("/reserveer-een-plek", (request, response) => {
+server.post("/reserveren", (request, response) => {
     const baseurl = "https://api.oba.fdnd.nl/api/v1";
-
     const url = `${baseurl}/reserveringen`;
-
-    console.log(request.body)
 
     postJson(url, request.body).then((data) => {
         let newReservation = { ...request.body };
@@ -85,19 +88,12 @@ server.post("/reserveer-een-plek", (request, response) => {
                 values: newReservation,
             };
 
-            response.render("reserveer-een-plek", newdata);
+            response.render("reserveren", newdata);
         }
-        console.log(data)
+
+        console.log(JSON.stringify(data.errors))
     });
 
-    console.log(url)
-});
-
-server.get("/profile", (request, response) => {
-	fetchJson(defaultUrl).then((data) => {
-		response.render("profile", data);
-		console.log(data);
-	});
 });
 
 // Maakt een route voor de profielpagina
@@ -105,7 +101,6 @@ server.get("/profile"),
 	async (request, response) => {
 		fetchJson(defaultUrl).then((data) => {
 			response.render("profile", data);
-			console.log(data);
 		});
 	};
 
