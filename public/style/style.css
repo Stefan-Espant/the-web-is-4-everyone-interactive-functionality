@@ -136,13 +136,12 @@ p {
 article ul {
   background-color: var(--c-accent-25);
   width: fit-content;
-  border-radius: var(--u-small);
   padding: var(--u-medium);
   margin-bottom: var(--u-default);
 }
 
 li {
-  color: var(--c-accent-100);
+  color: var(--c-invert);
   list-style: none;
 }
 
@@ -314,15 +313,20 @@ section {
 }
 
 /* Fomrulier voor het reserveren */
+label {
+  width: fit-content;
+}
+
 legend {
-  visibility: hidden;
+  font-size: var(--u-large);
+  font-weight: 700;
+  line-height: 1;
 }
 
 .reservation {
   width: 100%;
   display: block;
   margin: auto;
-
 }
 
 .reservation fieldset {
@@ -381,7 +385,7 @@ legend {
   }
 
   .reservation {
-    width: 20em;
+    width: 28em;
 }
 
 @media (min-width: 35em) {

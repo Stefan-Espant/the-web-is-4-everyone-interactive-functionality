@@ -1,18 +1,18 @@
-<%- include('./partials/head') %> <%-
-include('./partials/header') %>
+<%- include('./partials/head') %> 
+<%- include('./partials/header') %>
 
 <main>
+
     <section>
-        <h1>Reserveer een boek</h1>
-    <form class="reservation" action="/reserveer-een-plek" method="post">
+    <form class="reservation" action="/reserveren" method="post">
         <fieldset>
             <legend>Reserveer een boek</legend>
             <label for="obaId">oba ID</label>
-            <input id="obaId" type="text" name="obaId" value="<%= locals.reservations?.obaId ?? '' %>"/>
+            <input required id="obaId" type="text" name="obaId" value="<%= locals.reservations?.obaId ?? '' %>"/>
             <label for="userName">Wat is uw voornaam?</label>
-            <input id="userName" type="text" name="userName" value="<%= locals.reservations?.userName ?? '' %>"/>
+            <input required id="userName" type="text" name="userName" value="<%= locals.reservations?.userName ?? '' %>"/>
             <label for="date">Wanneer wilt u een boek lenen?</label>
-            <input id="date" type="date" name="date" value="<%= locals.reservations?.date ?? '' %>"/>
+            <input required id="date" type="date" name="date" value="<%= locals.reservations?.date ?? '' %>"/>
             <input type="submit" value="reserveren">
         </fieldset>
     </form>    
