@@ -12,7 +12,7 @@ function search() {
 		itemResults.forEach((itemResult) => {
 			itemResult.hidden = false;
 		});
-		
+
 	} else {
 		itemResults.forEach((itemResult) => {
 			itemResult.hidden = !itemResult.textContent

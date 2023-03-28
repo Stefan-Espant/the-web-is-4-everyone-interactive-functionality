@@ -1,0 +1,25 @@
+<%- include('./partials/head') %>
+<section>
+	<form action="/login" method="post">
+		<div>
+			<label for="email">E-mailadres:</label>
+			<input
+				type="email"
+				id="email"
+				name="email"
+				required
+			/>
+		</div>
+		<div>
+			<label for="password">Wachtwoord:</label>
+			<input
+				type="password"
+				id="password"
+				name="password"
+				required
+			/>
+		</div>
+		<input type="submit" value="inloggen" />
+	</form>
+</section>
+<%- include('./partials/foot') %>

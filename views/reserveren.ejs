@@ -2,22 +2,52 @@
 <%- include('./partials/header') %>
 
 <main>
-
-    <section>
-    <form class="reservation" action="/reserveren" method="post">
-        <fieldset>
-            <legend>Reserveer een boek</legend>
-            <label for="obaId">oba ID</label>
-            <input required id="obaId" type="text" name="obaId" value="<%= locals.reservations?.obaId ?? '' %>"/>
-            <label for="userName">Wat is uw voornaam?</label>
-            <input required id="userName" type="text" name="userName" value="<%= locals.reservations?.userName ?? '' %>"/>
-            <label for="date">Wanneer wilt u een boek lenen?</label>
-            <input required id="date" type="date" name="date" value="<%= locals.reservations?.date ?? '' %>"/>
-            <input type="submit" value="reserveren">
-        </fieldset>
-    </form>    
-</section>
+	<section>
+		<form
+			class="reservation"
+			action="/reserveren"
+			method="post"
+            autocomplete="on"
+		> 
+			<fieldset>
+				<legend>Reserveren</legend>
+				<label for="obaId">oba ID</label>
+				<input
+					required
+					id="obaId"
+					type="text"
+					name="obaId"
+					value="<%= locals.reservations?.obaId ?? '' %>"
+				/>
+				<label for="userName">Wat is uw voornaam?</label>
+				<input
+					required
+					id="userName"
+					type="text"
+					name="userName"
+					value="<%= locals.reservations?.userName ?? '' %>"
+				/>
+				<label for="date"
+					>Wanneer wilt u een boek lenen?</label
+				>
+				<input
+					required
+					id="date"
+					type="date"
+					name="date"
+					value="<%= locals.reservations?.date ?? '' %>"
+				/>
+				<input type="submit" value="reserveren" />
+			</fieldset>
+		</form>
+	</section>
+    <section class="error-message" style="display:none">
+        <div>
+            <p>Zorg dat alle velden zijn ingevuld!</p>
+        </div>
+    </section>
 
 </main>
 
 <%- include('./partials/foot') %>
+

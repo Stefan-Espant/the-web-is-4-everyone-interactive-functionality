@@ -1,7 +1,7 @@
 // Importeert belangrijke onderdelen
 import express, { request } from "express";
 import dotenv from "dotenv";
-import fs from 'fs';
+
 
 // Importeert bestanden via routes
 // import indexRoute from './routes/index.js'
@@ -23,7 +23,7 @@ server.use(express.urlencoded({ extended: true }))
 // Opbouw Boeken URL van de API
 const urlBase = "https://zoeken.oba.nl/api/v1/search/";
 const urlQuery = "?q=";
-const urlDefault = "boek";
+const urlDefault = "special:all";
 const urlKey = `${process.env.KEY}`;
 const urlOutput = "&refine=true&output=json";
 const defaultUrl =
@@ -109,51 +109,90 @@ server.get("/profile"),
 		});
 	};
 
-// Definieer gebruikersdata als een array in een JSON-bestand
-let usersData = JSON.parse(fs.readFileSync('./users.json','utf8'));
+    server.get('/login', (req, res) => {
+        res.render('login');
+      });
+      
+      server.post('/login', (req, res) => {
+        const username = req.body.username;
+        const password = req.body.password;
+      
+        if (userData[username] && userData[username].password === password) {
+          res.send(`Welcome ${username}`);
+        } else {
+          res.send('Invalid username or password');
+        }
+      });    
 
-// Definieer de routes voor de applicatie
-server.get('/', (req, res) => {
-  res.render('index');
-});
-
-server.get('/login', (req, res) => {
-  res.render('login');
-});
-
-server.post('/login', (req, res) => {
-  const { email, password } = req.body;
-
-  const user = usersData.find((u) => u.email === email);
-
-  if (!user || user.password !== password) {
-    return res.status(401).send('Onjuiste inloggegevens');
-  }
-
-  res.redirect('/');
-});
-
-server.get('/logout', (req, res) => {
-  // Hier zou normaal gesproken de cookie met het JSON web token worden verwijderd
-  // Maar omdat we geen 'jsonwebtoken' module gebruiken, laten we deze stap weg
-
-  res.redirect('/login');
-});
-
+      const bcrypt = require('bcrypt');
+      const jwt = require('jsonwebtoken');
+      const fs = require('fs');
+      
+      const app = express();
+      
+      app.set('view engine', 'ejs');
+      app.use(express.urlencoded({ extended: true }));
+      
+      const secretKey = 'my_secret_key'; // Verander deze sleutel naar een unieke waarde
+      
+      // Definieer gebruikersdata als een array in een JSON-bestand
+      let usersData = JSON.parse(fs.readFileSync('users.json'));
+      
+      // Definieer een middleware-functie om te controleren of de gebruiker is ingelogd
+      const auth = (req, res, next) => {
+        try {
+          const token = req.cookies.token || '';
+          const decoded = jwt.verify(token, secretKey);
+          req.user = decoded;
+          next();
+        } catch (error) {
+          res.redirect('/login');
+        }
+      };
+      
+      // Definieer de routes voor de applicatie
+      app.get('/', auth, (req, res) => {
+        res.render('index', { user: req.user });
+      });
+      
+      app.get('/login', (req, res) => {
+        res.render('login');
+      });
+      
+      app.post('/login', (req, res) => {
+        const { email, password } = req.body;
+      
+        const user = usersData.find((u) => u.email === email);
+      
+        if (!user || !bcrypt.compareSync(password, user.password)) {
+          return res.status(401).send('Onjuiste inloggegevens');
+        }
+      
+        const token = jwt.sign({ email: user.email }, secretKey);
+        res.cookie('token', token, { httpOnly: true });
+        res.redirect('/');
+      });
+      
+      app.get('/logout', (req, res) => {
+        res.clearCookie('token');
+        res.redirect('/login');
+      });
+    
+      
+  
 // Stelt afhandeling van formulieren in
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 // Start express op, haal het ingestelde poortnummer op
 server.listen(server.get("port"), function () {
-  // Toon een bericht in de console en geef het poortnummer door
-  console.log(
-    `Application started on http://localhost:${server.get(
-      "port"
-    )}`
-  );
+	// Toon een bericht in de console en geef het poortnummer door
+	console.log(
+		`Application started on http://localhost:${server.get(
+			"port"
+		)}`
+	);
 });
-
 
 async function fetchJson(url, payload = {}) {
 	return await fetch(url, payload)

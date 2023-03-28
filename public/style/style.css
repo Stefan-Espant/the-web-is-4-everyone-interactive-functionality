@@ -36,6 +36,7 @@
     --c-accent-50: #e1e1e1;
     --c-accent-100: #999;
     --c-invert: #111;
+    --c-succes: #58ab3c;
 }
 
 ::selection {
@@ -255,7 +256,7 @@ section {
 
 .items article {
   width: 16em;
-  height: 20em;
+  height: 22em;
   border: var(--u-micro) solid var(--c-accent-50);
   list-style: none;
   padding: var(--u-default);
@@ -277,7 +278,6 @@ section {
 
 .items h2 {
   overflow: hidden;
-  max-height: 2.75em;
 }
 
 /* Zoekbalk */
@@ -321,6 +321,7 @@ legend {
   font-size: var(--u-large);
   font-weight: 700;
   line-height: 1;
+  padding: 0 var(--u-medium);
 }
 
 .reservation {
@@ -330,8 +331,7 @@ legend {
 }
 
 .reservation fieldset {
-  border: none;
-  background-color: var(--c-accent-25);
+  border: var(--u-micro) solid var(--c-accent-25);
   display: flex;
   flex-direction: column;
   padding: var(--u-default);
@@ -344,6 +344,10 @@ legend {
   padding-left: var(--u-medium);
   margin-bottom: var(--u-default);
   transition: var(--a-quick) ease-in-out;
+}
+
+.reservation input:valid {
+  border: var(--u-micro) solid var(--c-succes);
 }
 
 .reservation input[type="submit"] {
@@ -367,6 +371,29 @@ legend {
 .reservation input:focus-visible {
   outline: none;
 }
+
+/* Error bericht */
+.error-message {
+  display: flex;
+  position: relative;
+}
+
+.error-message div {
+  width: fit-content;
+  border: var(--u-micro) solid rgb(234, 96, 96);
+  background-color: rgb(249, 236, 236);
+  color: rgb(227, 48, 48);
+  padding: var(--u-medium) var(--u-default);
+  position: absolute;
+  bottom: 0;
+} 
+
+.error-message p {
+font-weight: 500;
+}
+
+/* Login page */
+
 
 
 /* media queries */
