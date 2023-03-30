@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "firstname": "",
+        "prefix": "",
+        "sirname": "",
+        "location": "",
+        "start-time": "",
+        "end-time": "",
+        "wifi": "",
+        "socket": "",
+        "printer": "",
+        "computer": "",
+        "silence": "",
+        "accessibility": ""
+    }
+]

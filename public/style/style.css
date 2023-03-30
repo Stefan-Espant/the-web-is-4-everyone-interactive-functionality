@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
 }
 
 /* Standaard eigen waardes */
@@ -77,7 +76,6 @@ header ul {
   gap: var(--u-default);
 }
 
-
 header nav {
   display: flex;
   position: sticky;
@@ -121,6 +119,7 @@ h1 {
 
 h2 {
   font-size: 1em;
+  font-weight: 500;
 }
 
 h3 {
@@ -133,7 +132,16 @@ p {
   max-width: 30em;
 }
 
+sup {
+  color: var(--c-accent-100);
+  font-size: 0.75em;
+}
+
 /* List */
+ul {
+  padding: 0;
+}
+
 article ul {
   background-color: var(--c-accent-25);
   width: fit-content;
@@ -194,35 +202,73 @@ button:hover svg {
   fill: var(--c-primary-100);
 }
 
-.cta-button {
+input {
+  margin: 0;
+}
+
+input[type=checkbox] {
+  width: 1em;
+  aspect-ratio: 1/1;
+}
+
+input:focus-visible {
+  border: var(--u-micro) solid var(--c-primary-100);
+  outline: none;
+  transition: var(--a-quick) ease-in-out;
+}
+
+select {
+  /* all:unset; */
+  border: var(--u-nano) solid var(--c-accent-100);
+  background-color: var(--c-default);
+  transition: var(--a-quick) ease-in-out;
+}
+
+select:focus-visible {
+  outline: none
+}
+
+select:focus {
+  border: var(--u-nano) solid var(--c-primary-100);
+}
+
+.cta {
+  min-width: 12.5em;
   background-color: var(--c-accent-100);
   color: var(--c-default);
   padding: var(--u-medium) var(--u-default);
+  display: flex;
+  gap: var(--u-medium);
 }
 
-.cta-button svg , .cta-button:hover  svg  {
+.cta svg , .cta:hover  svg  {
   fill: var(--c-default);
 }
 
-.cta-button:hover {
+.cta:hover {
   background-color: var(--c-primary-100);
   color: var(--c-default);
 }
 
-.reserve-item {
+.execute {
+  width: fit-content;  
   background-color: var(--c-accent-100);
   color: var(--c-default);
   margin: var(--u-default) 0;
+  margin-left: auto;
   padding: var(--u-medium) var(--u-large);
 }
 
-.reserve-item:hover {
+.execute:hover {
   background-color: var(--c-primary-100);
   color: var(--c-default);
-
 }
 
 /* lay-out */
+main section:first-child {
+  margin: 0 auto;
+}
+
 section {
   padding: var(--u-default);
 }
@@ -231,6 +277,10 @@ section {
   width: fit-content;
   margin: 0 auto;
   padding-bottom: var(--u-large);
+}
+
+.searchbar input:valid, input:read-only  {
+  border: var(--u-micro) solid var(--c-accent-50);
 }
 
 .item-view {
@@ -297,8 +347,8 @@ section {
   width: 66%;
   max-width: 30em;
   height: 2em;
-  border: var(--u-micro) solid var(--c-accent-100);
-  border-radius: var(--u-default);
+  border: var(--u-micro) solid var(--c-accent-50);
+  border-radius: var(--u-large);
   margin: auto;
   padding-left: var(--u-default);
   transition: var(--a-default) cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -312,13 +362,19 @@ section {
   outline: none;
 }
 
-/* Fomrulier voor het reserveren */
+/* Formulier voor het reserveren */
+form {
+  display: flex;
+  flex-flow: column;
+  gap: var(--u-default);
+}
+
 label {
   width: fit-content;
 }
 
 legend {
-  font-size: var(--u-large);
+  width: fit-content;
   font-weight: 700;
   line-height: 1;
   padding: 0 var(--u-medium);
@@ -330,15 +386,14 @@ legend {
   margin: auto;
 }
 
-.reservation fieldset {
+fieldset {
   border: var(--u-micro) solid var(--c-accent-25);
   display: flex;
   flex-direction: column;
   padding: var(--u-default);
 }
 
-.reservation input {
-  max-width: 15em;
+input {
   border: var(--u-nano) solid var(--c-accent-50);
   padding: var(--u-micro);
   padding-left: var(--u-medium);
@@ -346,11 +401,11 @@ legend {
   transition: var(--a-quick) ease-in-out;
 }
 
-.reservation input:valid {
-  border: var(--u-micro) solid var(--c-succes);
+input:valid, input:read-only  {
+  border: var(--u-nano) solid var(--c-succes);
 }
 
-.reservation input[type="submit"] {
+input[type="submit"] {
   width: fit-content;
   border: none;
   background-color: var(--c-accent-100);
@@ -360,15 +415,19 @@ legend {
   cursor: pointer;
 }
 
-.reservation input[type="submit"]:hover {
+input[type="submit"]:hover {
   background-color: var(--c-primary-100);
 }
 
-.reservation input:focus {
-  border: var(--u-micro) solid var(--c-primary-100);
+input[type="checkbox"]:focus-visible {
+  border: var(--u-nano) solid var(--c-primary-100);
 }
 
-.reservation input:focus-visible {
+input:focus {
+  border: var(--u-nano) solid var(--c-primary-100);
+}
+
+input:focus-visible {
   outline: none;
 }
 
@@ -393,8 +452,58 @@ font-weight: 500;
 }
 
 /* Login page */
+.login, .reserve-spot {
+  width: 12em;
+  margin: auto;
+}
+
+.login-header {
+  height: 12vh;
+}
+
+.login h1 {
+  font-size: var(--u-large);
+  padding-bottom: var(--u-medium);
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login input {
+  all:unset;
+  background-color: var(--c-default);
+  border: var(--u-nano) solid var(--c-accent-50);
+  padding: var(--u-micro) var(--u-small);
+}
 
 
+/* reserveer plek */
+.reserve-spot ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--u-default);
+  max-height: 8em;
+}
+
+.reserve-spot li {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: var(--u-medium);
+}
+
+.reserve-spot input[type="checkbox"] {
+  margin: 0;
+}
+
+.reserve-spot label {
+  display: flex;
+  align-items: center;
+  gap: var(--u-small);
+}
 
 /* media queries */
 
@@ -404,6 +513,10 @@ font-weight: 500;
     margin: auto;
   }
 
+  .login, .reserve-spot {
+    width: 18em;
+  }
+
 }
 
 @media (min-width: 30em) {
@@ -411,8 +524,13 @@ font-weight: 500;
     width: fit-content;
   }
 
+  .login, .reserve-spot {
+    width: 28em;
+  }
+
   .reservation {
     width: 28em;
+  }
 }
 
 @media (min-width: 35em) {
@@ -439,6 +557,4 @@ font-weight: 500;
   .items {
     width: 69em;
   }
-}
-
 }

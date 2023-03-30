@@ -1,0 +1,279 @@
+<%- include('./partials/head') %> <%-
+include('./partials/header') %>
+<main>
+	<section>
+		<h1>reserveer een plek</h1>
+	</section>
+	<section class="reserve-spot">
+		<form action="/reserveer-een-plek" method="post">
+			<fieldset>
+				<legend>Persoonlijke gegevens</legend>
+				<label for="firstname">Voornaam</label>
+				<input id="firstname" required />
+				<label for="prefix"
+					>Tussenvoegsels <sup>Optioneel</sup></label
+				>
+				<input id="prefix" />
+				<label for="sirname">Achternaam</label>
+				<input id="sirname" required />
+			</fieldset>
+			<fieldset>
+				<legend>Locatie</legend>
+				<label for="location">Kies een locatie</label>
+				<%- include('./partials/locations') %>
+			</fieldset>
+			<fieldset>
+				<legend>Tijdslot</legend>
+				<label for="start-time">
+					Selecteer een begintijd
+				</label>
+				<input
+					id="start-time"
+					type="time"
+					name="start-time"
+                    min="09:00" max="18:00"
+					required
+				/>
+				<label for="end-time">Selecteer een eindtijd</label>
+				<input
+					id="end-time"
+					type="time"
+					name="end-time"
+                    min="09:00" max="18:00"
+					required
+				/>
+			</fieldset>
+			<fieldset>
+				<legend>Faciliteiten</legend>
+				<ul>
+					<li>
+						<input
+							type="checkbox"
+							id="wifi"
+							name="wifi"
+							value="wifi"
+						/>
+						<label for="Wifi">
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 18 18"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<circle
+									cx="8.99981"
+									cy="14.6569"
+									r="2"
+									transform="rotate(-45 8.99981 14.6569)"
+									fill="black"
+								/>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M13.2426 10.4142C10.8995 8.07104 7.10047 8.07104 4.75732 10.4142L6.17154 11.8284C7.73363 10.2663 10.2663 10.2663 11.8284 11.8284L13.2426 10.4142Z"
+									fill="black"
+								/>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M1.92871 7.58582L3.34292 9.00003C6.46712 5.87583 11.5324 5.87583 14.6566 9.00003L16.0708 7.58582C12.1656 3.68057 5.83395 3.68057 1.92871 7.58582Z"
+									fill="black"
+								/>
+							</svg>
+
+							Wifi</label
+						>
+					</li>
+					<li>
+						<input
+							type="checkbox"
+							id="coding"
+							name="interest"
+							value="coding"
+						/>
+						<label for="Wifi">
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M2 2H22V22H2V2ZM0 0H2H22H24V2V22V24H22H2H0V22V2V0ZM11 17.917V16H13V17.917C15.8377 17.441 18 14.973 18 12C18 9.027 15.8377 6.55904 13 6.08296V8H11V6.08296C8.16229 6.55904 6 9.027 6 12C6 14.973 8.16229 17.441 11 17.917ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12ZM16 12C16 12.5523 15.5523 13 15 13C14.4477 13 14 12.5523 14 12C14 11.4477 14.4477 11 15 11C15.5523 11 16 11.4477 16 12ZM9 13C9.55229 13 10 12.5523 10 12C10 11.4477 9.55229 11 9 11C8.44771 11 8 11.4477 8 12C8 12.5523 8.44771 13 9 13Z"
+									fill="black"
+								/>
+							</svg>
+							Stopcontact</label
+						>
+					</li>
+					<li>
+						<input
+							type="checkbox"
+							id="coding"
+							name="interest"
+							value="coding"
+						/>
+						<label for="Wifi">
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M17.5 12.75C18.1904 12.75 18.75 12.1904 18.75 11.5C18.75 10.8096 18.1904 10.25 17.5 10.25C16.8096 10.25 16.25 10.8096 16.25 11.5C16.25 12.1904 16.8096 12.75 17.5 12.75Z"
+									fill="black"
+								/>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M7 2C6.44772 2 6 2.44772 6 3V7H5C3.34315 7 2 8.34315 2 10V17C2 18.1046 2.89543 19 4 19H6V21C6 21.5523 6.44772 22 7 22H17C17.5523 22 18 21.5523 18 21V19H20C21.1046 19 22 18.1046 22 17V10C22 8.34315 20.6569 7 19 7H18V3C18 2.44772 17.5523 2 17 2H7ZM16 7V4H8V7H16ZM18 17H20V10C20 9.44772 19.5523 9 19 9H5C4.44772 9 4 9.44772 4 10L4 17H6V15C6 14.4477 6.44772 14 7 14H17C17.5523 14 18 14.4477 18 15V17ZM8 20V16H16V20H8Z"
+									fill="black"
+								/>
+							</svg>
+
+							Printer</label
+						>
+					</li>
+					<li>
+						<input
+							type="checkbox"
+							id="coding"
+							name="interest"
+							value="coding"
+						/>
+						<label for="Wifi">
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M3.5 3C2.39543 3 1.5 3.89543 1.5 5V15C1.5 16.1046 2.39543 17 3.5 17H11V19H8C7.44772 19 7 19.4477 7 20C7 20.5523 7.44772 21 8 21H16C16.5523 21 17 20.5523 17 20C17 19.4477 16.5523 19 16 19H13V17H20.5C21.6046 17 22.5 16.1046 22.5 15V5C22.5 3.89543 21.6046 3 20.5 3H3.5ZM3.5 5V15H20.5V5H3.5Z"
+									fill="black"
+								/>
+							</svg>
+
+							Computer</label
+						>
+					</li>
+					<li>
+						<input
+							type="checkbox"
+							id="coding"
+							name="interest"
+							value="coding"
+						/>
+						<label for="Wifi">
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M3.4142 2.99992C3.02367 2.6094 2.39051 2.6094 1.99998 2.99992C1.60946 3.39045 1.60946 4.02361 1.99998 4.41414L5.58577 7.99992H3C1.89543 7.99992 1 8.89535 1 9.99992V13.9999C1 15.1045 1.89543 15.9999 3 15.9999H7L12.3492 20.585C12.9979 21.141 14 20.6801 14 19.8257V16.4142L19.5858 21.9999C19.9763 22.3905 20.6095 22.3905 21 21.9999C21.3905 21.6094 21.3905 20.9762 21 20.5857L19.7648 19.3506L18.75 18.3355L16.9451 16.5308L15.9442 15.5297L3.4142 2.99992ZM7.51763 9.93178C7.35002 9.97669 7.17608 9.99992 7 9.99992L3 9.99992V13.9999H7C7.47742 13.9999 7.9391 14.1707 8.30158 14.4814L12 17.6515V14.4142L7.51763 9.93178Z"
+									fill="black"
+								/>
+								<path
+									d="M12 6.34836V8.7571L14 10.7571V4.17414C14 3.31979 12.9979 2.85888 12.3492 3.41489L9.2846 6.0417L10.703 7.46009L12 6.34836Z"
+									fill="black"
+								/>
+								<path
+									d="M16.7632 13.5203L18.2981 15.0552C18.358 14.9315 18.4144 14.806 18.4672 14.6787C18.8189 13.8294 19 12.9192 19 11.9999C19 11.0807 18.8189 10.1704 18.4672 9.32114C18.2433 8.78064 17.953 8.27158 17.604 7.80531C17.2731 7.36316 16.6332 7.36676 16.2426 7.75728C15.8521 8.14781 15.8623 8.77695 16.1675 9.23727C16.3446 9.50453 16.4961 9.78884 16.6194 10.0865C16.8707 10.6931 17 11.3433 17 11.9999C17 12.5167 16.9199 13.0296 16.7632 13.5203Z"
+									fill="black"
+								/>
+								<path
+									d="M19.7387 16.4958L21.2287 17.9858C21.5926 17.4247 21.9055 16.8303 22.1627 16.2094C22.7155 14.8749 23 13.4445 23 11.9999C23 10.5554 22.7155 9.12499 22.1627 7.79041C21.7409 6.77211 21.1692 5.82481 20.4682 4.97927C20.1069 4.54345 19.4537 4.54626 19.0534 4.94656C18.6531 5.34686 18.6584 5.99264 19.0103 6.43607C19.526 7.08584 19.9499 7.80548 20.2686 8.57494C20.7184 9.66079 20.9499 10.8246 20.9499 11.9999C20.9499 13.1752 20.7184 14.3391 20.2686 15.4249C20.1157 15.7941 19.9386 16.1518 19.7387 16.4958Z"
+									fill="black"
+								/>
+							</svg>
+
+							Stilteruimte</label
+						>
+					</li>
+					<li>
+						<input
+							type="checkbox"
+							id="coding"
+							name="interest"
+							value="coding"
+						/>
+						<label for="Wifi">
+							<svg
+								width="17"
+								height="22"
+								viewBox="0 0 17 22"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<rect
+									x="6"
+									y="5"
+									width="2"
+									height="10"
+									fill="black"
+								/>
+								<rect
+									x="15"
+									y="13"
+									width="2"
+									height="9"
+									transform="rotate(90 15 13)"
+									fill="black"
+								/>
+								<rect
+									x="12"
+									y="7"
+									width="2"
+									height="6"
+									transform="rotate(90 12 7)"
+									fill="black"
+								/>
+								<rect
+									x="17"
+									y="19"
+									width="2"
+									height="4"
+									transform="rotate(90 17 19)"
+									fill="black"
+								/>
+								<rect
+									x="15"
+									y="21"
+									width="2"
+									height="6"
+									transform="rotate(-180 15 21)"
+									fill="black"
+								/>
+								<circle cx="7" cy="2" r="2" fill="black" />
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M5 10.083C2.16229 10.559 0 13.027 0 16C0 19.3137 2.68629 22 6 22C9.31371 22 12 19.3137 12 16H10C10 18.2091 8.20914 20 6 20C3.79086 20 2 18.2091 2 16C2 14.1362 3.27477 12.5701 5 12.126V10.083Z"
+									fill="black"
+								/>
+							</svg>
+
+							Toegankelijkheid</label
+						>
+					</li>
+				</ul>
+			</fieldset>
+			<button class="execute">Reserveren</button>
+		</form>
+	</section>
+</main>
+<%- include('./partials/foot') %>

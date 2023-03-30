@@ -3,6 +3,9 @@
 
 <main>
 	<section>
+		<h1>Reserveer een boek</h1>
+	</section>
+	<section>
 		<form
 			class="reservation"
 			action="/reserveren"
@@ -10,14 +13,15 @@
             autocomplete="on"
 		> 
 			<fieldset>
-				<legend>Reserveren</legend>
-				<label for="obaId">oba ID</label>
+				<legend>Persoonlijke gegevens</legend>
+				<label for="obaId">oba ID nummer</label>
 				<input
 					required
 					id="obaId"
 					type="text"
 					name="obaId"
-					value="<%= locals.reservations?.obaId ?? '' %>"
+					value=""
+                    
 				/>
 				<label for="userName">Wat is uw voornaam?</label>
 				<input
@@ -27,9 +31,8 @@
 					name="userName"
 					value="<%= locals.reservations?.userName ?? '' %>"
 				/>
-				<label for="date"
-					>Wanneer wilt u een boek lenen?</label
-				>
+				<label for="date">
+                    Wanneer wilt u een boek lenen?</label>
 				<input
 					required
 					id="date"
@@ -37,7 +40,7 @@
 					name="date"
 					value="<%= locals.reservations?.date ?? '' %>"
 				/>
-				<input type="submit" value="reserveren" />
+				<button class="execute" type="submit" value="reserveren">reserveren</button>
 			</fieldset>
 		</form>
 	</section>
