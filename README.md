@@ -1,4 +1,6 @@
-> _Fork_ deze leertaak en ga aan de slag. Onderstaande outline ga je gedurende deze taak in jouw eigen GitHub omgeving uitwerken. De instructie vind je in: [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
+> _Fork_ deze leertaak en ga aan de slag. Onderstaande outline ga je gedurende deze taak in jouw eigen GitHub omgeving uitwerken. De instructie vind je in: 
+
+<img width="1440" alt="Schermafbeelding 2023-03-30 om 09 38 19" src="https://user-images.githubusercontent.com/89298385/228764344-3b8fb2b2-05e7-4af6-aef9-542d1fcac9b1.png">
 
 # oba · the web is 4 everyone
 <!-- Geef je project een titel en schrijf in één zin wat het is -->
@@ -28,6 +30,7 @@
 
 
 ## Bronnen
+[docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
 
 ## Licentie
 
