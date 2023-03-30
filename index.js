@@ -33,10 +33,6 @@ const urlOutput = "&refine=true&output=json";
 const defaultUrl =
 	urlBase + urlQuery + urlDefault + urlKey + urlOutput;
 
-// Reserveren
-const urlReservation =
-	"https://api.oba.fdnd.nl/api/v1/reserveringen";
-
 // Stel in hoe express gebruikt kan worden
 server.set("view engine", "ejs");
 server.set("views", "./views");

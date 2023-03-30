@@ -202,6 +202,14 @@ button:hover svg {
   fill: var(--c-primary-100);
 }
 
+button:focus-visible {
+  outline: none;
+}
+
+button:focus {
+  background-color: var(--c-primary-100);
+}
+
 input {
   margin: 0;
 }
