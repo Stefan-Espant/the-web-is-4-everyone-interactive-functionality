@@ -41,9 +41,6 @@ server.use(express.static("public"));
 // Maakt een route voor de overzichtspagina
 server.get("/", (request, response) => {
 
-	const defaultUrl =
-	urlBase + urlQuery + urlDefault + urlKey + urlOutput;
-	
 	fetchJson(defaultUrl).then((data) => {
 		response.render("index", data);
 	});
