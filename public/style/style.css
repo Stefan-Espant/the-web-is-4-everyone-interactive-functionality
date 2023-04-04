@@ -114,12 +114,13 @@ h1 {
   font-size: 2.5em;
   font-weight: 700;
   line-height: 1;
-  max-width: 30em;
+  max-width: 20em;
 }
 
 h2 {
   font-size: 1em;
   font-weight: 500;
+  max-width: 20em;
 }
 
 h3 {
@@ -130,6 +131,7 @@ h3 {
 
 p {
   max-width: 30em;
+  padding-bottom: var(--u-default);
 }
 
 sup {
@@ -166,12 +168,21 @@ a {
   cursor: pointer;
 }
 
-a svg {
-  transition: var(--a-quick);
-}
-
 a:hover {
   color: var(--c-primary-100);
+}
+
+a:focus-visible {
+  outline: none;
+}
+
+a:focus {
+  border: var(--u-micro) solid var(--c-primary-100);
+  padding: var(--u-micro) var(--u-small);
+}
+
+a svg {
+  transition: var(--a-quick);
 }
 
 a:hover svg {
@@ -241,21 +252,32 @@ select:focus {
 }
 
 .cta {
-  min-width: 12.5em;
+  width: fit-content;
   background-color: var(--c-accent-100);
   color: var(--c-default);
   padding: var(--u-medium) var(--u-default);
-  display: flex;
+  display: inline-flex;
   gap: var(--u-medium);
-}
-
-.cta svg , .cta:hover  svg  {
-  fill: var(--c-default);
 }
 
 .cta:hover {
   background-color: var(--c-primary-100);
   color: var(--c-default);
+}
+
+.cta:focus {
+  background-color: var(--c-default);
+  color: var(--c-accent-100);
+  border: var(--u-micro) solid var(--c-primary-100);
+  padding: var(--u-medium) var(--u-small);
+}
+
+.cta:focus svg {
+  fill: var(--c-accent-100);
+}
+
+.cta svg , .cta:hover  svg  {
+  fill: var(--c-default);
 }
 
 .execute {
@@ -284,11 +306,19 @@ section {
 .searchbar {
   width: fit-content;
   margin: 0 auto;
-  padding-bottom: var(--u-large);
 }
 
 .searchbar input:valid, input:read-only  {
   border: var(--u-micro) solid var(--c-accent-50);
+}
+
+#site-search {
+  transition: var(--a-quick) ease-in-out;
+}
+
+.hide {
+  display: none;
+
 }
 
 .item-view {
@@ -315,7 +345,7 @@ section {
 .items article {
   width: 16em;
   height: 22em;
-  border: var(--u-micro) solid var(--c-accent-50);
+  border: 0.15em solid var(--c-accent-50);
   list-style: none;
   padding: var(--u-default);
   position: relative;
@@ -348,7 +378,8 @@ section {
 }
 
 .searchbar label {
-  display: none;
+  height: 0.1px;
+  visibility: hidden;
 }
 
 .searchbar input {
@@ -486,6 +517,9 @@ font-weight: 500;
   padding: var(--u-micro) var(--u-small);
 }
 
+.login .cta {
+  margin: var(--u-medium) 0 0 auto;
+}
 
 /* reserveer plek */
 .reserve-spot ul {
@@ -564,5 +598,17 @@ font-weight: 500;
 @media (min-width: 69em) {
   .items {
     width: 69em;
+  }
+}
+
+/* Kleurcontrast hoog */
+@media (prefers-contrast: more) {
+  :root {
+        /* kleuren */
+        --c-primary-100: #a00;
+        --c-default: #fff;
+        --c-accent-50: #555;
+        --c-accent-100: #111;
+        --c-invert: #111;
   }
 }

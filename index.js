@@ -1,13 +1,12 @@
-// Importeert belangrijke onderdelen
-import express, {
-	request
-} from "express";
+// Importeert basis modules uit npm
+import express from "express";
 import dotenv from "dotenv";
-import fs from 'fs';
+import fs from "fs";
 
 // Importeert bestanden via routes
-// import indexRoute from './routes/index.js'
-// import objectRoute from './routes/object.js'
+import indexRoute from './routes/index.js'
+import categoryRoute from './routes/categorie.js'
+// import itemRoute from './routes/item.js'
 
 // Maakt een nieuwe express app
 const server = express();
@@ -19,54 +18,56 @@ server.set("port", process.env.PORT || 8000);
 dotenv.config();
 
 // Stel afhandeling van formulieren in
-server.use(express.json())
-server.use(express.urlencoded({
-	extended: true
-}))
+server.use(express.json());
+server.use(
+	express.urlencoded({
+		extended: true,
+	})
+);
 
-// Opbouw Boeken URL van de API
+// Stel de public map in
+server.use(express.static('public'))
+
+// Stel de routes in
+server.use('/', indexRoute)
+server.use('/categorieen', categoryRoute)
+
+// Extenties voor de URL
+const space = "%20";
+const bookItems = "boeken";
+
+// Opbouw URL van de API
 const urlBase = "https://zoeken.oba.nl/api/v1/search/";
 const urlQuery = "?q=";
-const urlDefault = "boek";
+const urlDefault = "special:all";
 const urlKey = `${process.env.KEY}`;
 const urlOutput = "&refine=true&output=json";
 const defaultUrl =
-	urlBase + urlQuery + urlDefault + urlKey + urlOutput;
+	urlBase + urlQuery + urlDefault + space + bookItems + urlKey + urlOutput;
 
 // Stel in hoe express gebruikt kan worden
 server.set("view engine", "ejs");
 server.set("views", "./views");
 server.use(express.static("public"));
 
-// Maakt een route voor de overzichtspagina
-server.get("/", (request, response) => {
-
-	fetchJson(defaultUrl).then((data) => {
-		response.render("index", data);
-	});
-});
-
 // Maakt een route voor de detailpagina
-server.get("/book", async (request, response) => {
-	let isbn = request.query.resultIsbn || "9789045117621";
+server.get("/item", async (request, response) => {
+	let id = request.query.id || "|oba-catalogus|279240";
 
+	let uniqueQuery = "?id=";
 	const uniqueUrl =
-		urlBase + urlQuery + isbn + urlKey + urlOutput;
+		urlBase + uniqueQuery + id + urlKey + urlOutput;
 
 	const data = await fetch(uniqueUrl)
 		.then((response) => response.json())
 		.catch((err) => err);
-	response.render("book", data);
+	response.render("item", data);
 });
-
-
 
 // Maakt een route voor de reserveringspagina
 server.get("/reserveren", (request, response) => {
 	const baseurl = "https://api.oba.fdnd.nl/api/v1";
 	const url = `${baseurl}/reserveringen`;
-
-	const reservation = request.query.reservations;
 
 	fetchJson(url).then((data) => {
 		response.render("reserveren", data);
@@ -80,11 +81,11 @@ server.post("/reserveren", (request, response) => {
 
 	postJson(url, request.body).then((data) => {
 		let newReservation = {
-			...request.body
+			...request.body,
 		};
 
 		if (data.success) {
-			response.redirect("/?reserveringenPosted=true");
+			response.redirect("/");
 		} else {
 			const errormessage = `${data.message}: Mogelijk komt dit door het id die al bestaat.`;
 			const newdata = {
@@ -95,84 +96,68 @@ server.post("/reserveren", (request, response) => {
 			response.render("reserveren", newdata);
 		}
 
-		console.log(JSON.stringify(data.errors))
-	});
+		console.log(JSON.stringify(data.errors));
 
+	});
 });
 
 // Maakt een route voor de profielpagina
-server.get("/profile"), (request, response) => {
+server.get("/profile"),
+	(request, response) => {
 		response.render("profile");
-};
+	};
 
-// Maakt een route voor de plekreservering 
-server.get("/reserveer-een-plek",(request, response) => {
-		response.render("reserveer-een-plek");
-});
-
-server.post("/reserveer-een-plek",(request, response) => {
+// Maakt een route voor de plekreservering
+server.get("/reserveer-een-plek", (request, response) => {
 	response.render("reserveer-een-plek");
 });
 
-
-
-// Definieer gebruikersdata als een array in een JSON-bestand
-let usersData = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
-
-server.get('/login', (req, response) => {
-	response.render('login');
+// Regelt de afhandeling van de reservering
+server.post("/reserveer-een-plek", (request, response) => {
+	response.render("reserveer-een-plek");
 });
 
-server.post('/login', (request, response) => {
-	const {
-		email,
-		password
-	} = request.body;
+// Definieer gebruikersdata als een array in een JSON-bestand
+let usersData = JSON.parse(
+	fs.readFileSync("./users.json", "utf8")
+);
+
+server.get("/login", (req, response) => {
+	response.render("login");
+});
+
+server.post("/login", (request, response) => {
+	const { email, password } = request.body;
 
 	const user = usersData.find((u) => u.email === email);
 
 	if (!user || user.password !== password) {
-		return response.status(401).send('Onjuiste inloggegevens');
+		return response
+			.status(401)
+			.send("Onjuiste inloggegevens");
 	}
 
-	response.redirect('/');
+	response.redirect("/");
 });
 
-server.get('/logout', (req, response) => {
-	response.redirect('/login');
+server.get("/logout", (req, response) => {
+	response.redirect("/login");
 });
 
 // Stelt afhandeling van formulieren in
 server.use(express.json());
-server.use(express.urlencoded({
-	extended: true
-}));
+server.use(
+	express.urlencoded({
+		extended: true,
+	})
+);
 
 // Start express op, haal het ingestelde poortnummer op
 server.listen(server.get("port"), function () {
 	// Toon een bericht in de console en geef het poortnummer door
 	console.log(
 		`Application started on http://localhost:${server.get(
-      "port"
-    )}`
+			"port"
+		)}`
 	);
 });
-
-
-async function fetchJson(url, payload = {}) {
-	return await fetch(url, payload)
-		.then((response) => response.json())
-		.catch((error) => error);
-}
-
-export async function postJson(url, body) {
-	return await fetch(url, {
-			method: "post",
-			body: JSON.stringify(body),
-			headers: {
-				"Content-Type": "application/json"
-			},
-		})
-		.then((response) => response.json())
-		.catch((error) => error);
-}

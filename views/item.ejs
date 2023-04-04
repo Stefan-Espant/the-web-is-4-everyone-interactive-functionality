@@ -13,17 +13,17 @@ include('./partials/header') %>
 				<li>Schrijver: <%= results[0].authors[0] %></li>
 				<li>Uitgever: <%= results[0].publisher %></li>
 				<li>
-					Genre: <%= results[0]['subject-topical'][0] %>
+					Genre: <%= results['subject-topical'] || '' %>
 				</li>
 				<li>Taal: <%= results[0].languages %></li>
 			</ul>
 			<ul>
 				<li>ID: <%= results[0].id %></li>
-				<li>ISBN: <%= results[0].isbn %></li>
+				<li>ISBN: <%= results[0].isbn || '' %></li>
 			</ul>
 			<h2>Samenvatting</h2>
-			<p><%= results[0].summaries[0] %></p>
-			<a href="/reserveren?<%= results[0].isbn %>" class="execute">Reserveer boek</a>
+			<p><%= results[0].summaries %></p>
+			<a href="/reserveren?<%= results[0].id %>" class="cta">Reserveer boek</a>
 		</article>
 	</section>
 </main>

@@ -2,39 +2,16 @@
 include('./partials/header') %>
 
 <main>
-	<section class="searchbar">
-		<h1>Waar bent u naar op zoek?</h1>
-		<form action="" method="get">
-			<input
-				type="search"
-				id="site-search"
-			/>
-			<label>binnen de website zoeken</label>
-		</form>
+	<section>
+		<h1>Welkom bij de oba</h1>
+		<h2>Selecteer een categorie</h2>
 	</section>
-
 	<section class="items">
-		<!-- Laad de resultaten in en genereert diverse articles met content -->
-		<% results.forEach(result => { %>
 		<article>
-				<img
-				src=" <%= result.coverimages %> "
-				alt=" <%= result.titles %> "
-				/>
-			<!-- Laad de titel van het boek in -->
-			<h2><%= result.titles[0] %></h2>
-			<%# Laad de schrijver van het boek in %>
-			<h3><%= result.authors %></h3>
-			<div>
-				<!-- Genereert een link met unieke content van het boek -->
-				<a href="/book?resultIsbn<%= result.isbn %>">
-					bekijk exemplaar
-				</a>
-			</div>
+			<h2>Boeken</h2>
+			<a href="/categorieen<% results.formats %>">Bekijk categorie</a>
 		</article>
-		<% }); %>
 	</section>
 </main>
-<script src="./script/script.js"></script>
 
 <%- include('./partials/foot') %>
