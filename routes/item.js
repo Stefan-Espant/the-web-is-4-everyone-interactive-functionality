@@ -3,7 +3,7 @@ import express from "express";
 
 dotenv.config();
 
-const server = express.Router();
+const item = express.Router();
 
 // Opbouw URL van de API
 const urlBase = "https://zoeken.oba.nl/api/v1/search/";
@@ -11,7 +11,7 @@ const urlKey = `${process.env.KEY}`;
 const urlOutput = "&refine=true&output=json";
 
 // Maakt een route voor de detailpagina
-server.get("/item", async (request, response) => {
+item.get("/item", async (request, response) => {
 	let id = request.query.id || "|oba-catalogus|279240";
 
 	let uniqueQuery = "?id=";
@@ -24,4 +24,4 @@ server.get("/item", async (request, response) => {
 	response.render("item", data);
 });
 
-export default server
+export default item

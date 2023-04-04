@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 import fs from "fs";
 
 // Importeert bestanden via routes
-import indexRoute from './routes/index.js'
-import categoryRoute from './routes/categorie.js'
-import itemRoute from './routes/item.js'
+import indexRoute from './routes/index.js';
+import categoryRoute from './routes/categorie.js';
+import itemRoute from './routes/item.js';
 
 // Maakt een nieuwe express app
 const server = express();
@@ -30,7 +30,7 @@ server.use(express.static('public'))
 
 // Stelt de routes in
 server.use('/', indexRoute)
-server.use('categorieen', categoryRoute)
+server.use('/categorieen', categoryRoute)
 server.use('/item', itemRoute)
 
 // Extenties voor de URL
