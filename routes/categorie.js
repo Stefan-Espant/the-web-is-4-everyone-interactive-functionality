@@ -4,7 +4,7 @@ import { fetchJson } from '../helpers/fetchWrapper.js'
 
 dotenv.config()
 
-const category = express.Router()
+const server = express.Router()
 
 // Extenties voor de URL
 const space = "%20";
@@ -20,11 +20,11 @@ const defaultUrl =
 	urlBase + urlQuery + urlDefault + space + bookItems + urlKey + urlOutput;
 
 // Maakt een route voor de overzichtspagina
-category.get("/categorieen", (request, response) => {
+server.get("/categorieen", (request, response) => {
 
 	fetchJson(defaultUrl).then((data) => {
 		response.render("categorieen", data);
 	});
 });
 
-export default category
+export default server

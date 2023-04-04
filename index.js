@@ -6,7 +6,7 @@ import fs from "fs";
 // Importeert bestanden via routes
 import indexRoute from './routes/index.js'
 import categoryRoute from './routes/categorie.js'
-// import itemRoute from './routes/item.js'
+import itemRoute from './routes/item.js'
 
 // Maakt een nieuwe express app
 const server = express();
@@ -28,9 +28,10 @@ server.use(
 // Stel de public map in
 server.use(express.static('public'))
 
-// Stel de routes in
+// Stelt de routes in
 server.use('/', indexRoute)
-server.use('/categorieen', categoryRoute)
+server.use('categorieen', categoryRoute)
+server.use('/item', itemRoute)
 
 // Extenties voor de URL
 const space = "%20";
@@ -49,20 +50,6 @@ const defaultUrl =
 server.set("view engine", "ejs");
 server.set("views", "./views");
 server.use(express.static("public"));
-
-// Maakt een route voor de detailpagina
-server.get("/item", async (request, response) => {
-	let id = request.query.id || "|oba-catalogus|279240";
-
-	let uniqueQuery = "?id=";
-	const uniqueUrl =
-		urlBase + uniqueQuery + id + urlKey + urlOutput;
-
-	const data = await fetch(uniqueUrl)
-		.then((response) => response.json())
-		.catch((err) => err);
-	response.render("item", data);
-});
 
 // Maakt een route voor de reserveringspagina
 server.get("/reserveren", (request, response) => {
@@ -140,7 +127,7 @@ server.post("/login", (request, response) => {
 	response.redirect("/");
 });
 
-server.get("/logout", (req, response) => {
+server.get("/logout", (request, response) => {
 	response.redirect("/login");
 });
 
