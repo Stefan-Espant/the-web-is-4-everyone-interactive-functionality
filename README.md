@@ -85,6 +85,8 @@ Voor dit project heb ik gebruik gemaakt van node en express. Hiervoor heb ik met
 ## Bronnen
 [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
 
+[CSS-tricks](https://css-tricks.com/a-complete-guide-to-css-media-queries/)
+
 ## Licentie
 
 This project is licensed under the terms of the [MIT license](./LICENSE).
