@@ -89,6 +89,8 @@ Voor dit project heb ik gebruik gemaakt van node en express. Hiervoor heb ik met
 
 [MDN · form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
 
+[Can I use](https://caniuse.com/?search=gap)
+
 ## Licentie
 
 This project is licensed under the terms of the [MIT license](./LICENSE).
