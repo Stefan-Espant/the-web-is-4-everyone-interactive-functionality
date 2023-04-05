@@ -30,8 +30,8 @@ server.use(express.static('public'))
 
 // Stelt de routes in
 server.use('/', indexRoute)
-server.use('/categorieen', categoryRoute)
-server.use('/item', itemRoute)
+server.get('/categorieen', categoryRoute)
+server.get('/item', itemRoute)
 
 // Extenties voor de URL
 const space = "%20";
@@ -49,7 +49,6 @@ const defaultUrl =
 // Stel in hoe express gebruikt kan worden
 server.set("view engine", "ejs");
 server.set("views", "./views");
-server.use(express.static("public"));
 
 // Maakt een route voor de reserveringspagina
 server.get("/reserveren", (request, response) => {
@@ -148,3 +147,27 @@ server.listen(server.get("port"), function () {
 		)}`
 	);
 });
+
+/**
+ * fetchJson() is a wrapper for the experimental node fetch api. It fetches the url
+ * passed as a parameter and returns the response body parsed through json.
+ * @param {*} url the api endpoint to address
+ * @returns the json response from the api endpoint
+ */
+ export async function fetchJson(url, payload = {}) {
+	return await fetch(url, payload)
+		.then((response) => response.json())
+		.catch((error) => error);
+}
+
+export async function postJson(url, body) {
+	return await fetch(url, {
+		method: "post",
+		body: JSON.stringify(body),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+		.then((response) => response.json())
+		.catch((error) => error);
+}

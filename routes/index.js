@@ -1,5 +1,4 @@
 import * as dotenv from 'dotenv'
-
 import express from 'express'
 import { fetchJson } from '../helpers/fetchWrapper.js'
 
