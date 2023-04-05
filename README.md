@@ -87,6 +87,8 @@ Voor dit project heb ik gebruik gemaakt van node en express. Hiervoor heb ik met
 
 [CSS-tricks](https://css-tricks.com/a-complete-guide-to-css-media-queries/)
 
+[MDN · form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+
 ## Licentie
 
 This project is licensed under the terms of the [MIT license](./LICENSE).
