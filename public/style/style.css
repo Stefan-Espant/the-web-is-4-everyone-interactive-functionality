@@ -361,7 +361,7 @@ section {
 .items div {
   bottom: var(--u-medium);
   position: absolute;
-  right: var(--u-default);
+  right: var(--u-medium);
 }
 
 .items h2 {
@@ -610,5 +610,16 @@ font-weight: 500;
         --c-accent-50: #555;
         --c-accent-100: #111;
         --c-invert: #111;
+  }
+}
+
+/* Verminderde animaties */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* animaties */
+    --a-quick: 0.01s;
+    --a-default: 0.01s;
+    --a-medium: 0.01s;
+    --a-large: 0.01s;
   }
 }

@@ -7,6 +7,7 @@ import fs from "fs";
 import indexRoute from './routes/index.js';
 import categoryRoute from './routes/categorie.js';
 import itemRoute from './routes/item.js';
+import reservationRoute from './routes/reservering.js';
 
 // Maakt een nieuwe express app
 const server = express();
@@ -32,6 +33,7 @@ server.use(express.static('public'))
 server.use('/', indexRoute)
 server.get('/categorieen', categoryRoute)
 server.get('/item', itemRoute)
+server.get('/reserveren', reservationRoute)
 
 // Extenties voor de URL
 const space = "%20";
@@ -49,43 +51,6 @@ const defaultUrl =
 // Stel in hoe express gebruikt kan worden
 server.set("view engine", "ejs");
 server.set("views", "./views");
-
-// Maakt een route voor de reserveringspagina
-server.get("/reserveren", (request, response) => {
-	const baseurl = "https://api.oba.fdnd.nl/api/v1";
-	const url = `${baseurl}/reserveringen`;
-
-	fetchJson(url).then((data) => {
-		response.render("reserveren", data);
-	});
-});
-
-// Verstuurt de data naar de API
-server.post("/reserveren", (request, response) => {
-	const baseurl = "https://api.oba.fdnd.nl/api/v1";
-	const url = `${baseurl}/reserveringen`;
-
-	postJson(url, request.body).then((data) => {
-		let newReservation = {
-			...request.body,
-		};
-
-		if (data.success) {
-			response.redirect("/");
-		} else {
-			const errormessage = `${data.message}: Mogelijk komt dit door het id die al bestaat.`;
-			const newdata = {
-				error: errormessage,
-				values: newReservation,
-			};
-
-			response.render("reserveren", newdata);
-		}
-
-		console.log(JSON.stringify(data.errors));
-
-	});
-});
 
 // Maakt een route voor de profielpagina
 server.get("/profile"),
