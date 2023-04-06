@@ -17,14 +17,15 @@ Een dynamische website waarmee iedereen bij de oba een boek kan reserveren.
 <!-- Bij Beschrijving staat kort beschreven wat voor project het is en wat je hebt gemaakt -->
 <!-- Voeg een mooie poster visual toe 📸 -->
 <!-- Voeg een link toe naar Github Pages 🌐-->
+Uit de backlog heb ik de volgende userstory uitgekozen.
+> Als gebruiker wil ik een boek zoeken en kunnen reserveren, zodat ik het later op kan halen.
+
 Voor deze repo heb ik een functionaliteit gebouwd waarmee iedereen bij de oba een boek kan reserveren. Dit is mogelijk gemaakt met een formulier die data post op een API. De data die daarnaar word verstuurd zijn een id, een voornaam van degene die hem reserveerd en een datum vanaf wanneer het boek kan owrden opgehaald of vanaf wanneer het boek kan worden gereserveerd.
 
 ## Gebruik
 <!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
-Uit de backlog heb ik de volgende userstory uitgekozen.
-> Als gebruiker wil ik een boek zoeken en kunnen reserveren, zodat ik het later op kan halen.
-
-Ik heb hiervoor een reserveringspagina met een formulier opgebouwd die 
+Met deze website kan een gebruiker een boek reserveren. De data die de gebruiker invult komt ook daadwerkelijk op de API terecht. 
+https://api.oba.fdnd.nl/api/v1/reserveringen
 
 ## Kenmerken
 <!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? Misschien heb je iets met NodeJS gedaan, of heb je een framwork of library gebruikt? -->
@@ -84,6 +85,12 @@ Voor dit project heb ik gebruik gemaakt van node en express. Hiervoor heb ik met
 
 ## Bronnen
 [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
+
+[CSS-tricks · CSS Media queries](https://css-tricks.com/a-complete-guide-to-css-media-queries/)
+
+[MDN · form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+
+[Can I use · Gap](https://caniuse.com/?search=gap)
 
 ## Licentie
 
